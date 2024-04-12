@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form action="inscription.html" method="post" align="center" onsubmit="return valider()">
+        <fieldset style="width: 50%; margin: 10% 25% 0 25%; background-color: aquamarine; padding: 40px; border-radius: 50%;" >
+            <legend><h1 >Bienvenu dans la page login</h1></legend>
+            <table align="center">
+                <tr>
+                    <td><label for="login"><b>Login :</b></label></td>
+                    <td><input type="text" id="login" name="login" placeholder="Nom_Prenom_123" required></td>
+                </tr>
+                <tr>
+                    <td><label for="motdepasse"><b>Mot de passe :</b></label></td>
+                    <td><input type="password" id="motdepasse" name="motdepasse" required></td>
+                </tr>
+                <tr>
+                    <td><label for="confirmer_motdepasse"><b>Confirmer votre Mot de passe :</b></label></td>
+                    <td><input type="password" id="confirmer_motdepasse" name="confirmer_motdepasse" required></td>
+                </tr>
+            </table><br>
+            <input type="submit" value="Valider" style="background-color: bisque; border-radius: 50%; width: 120px; height: 40px;">
+        </fieldset>
+    </form>
+    <script>
+        function valider() {
+    // Récupérer les valeurs des champs
+    var Login = document.getElementById("login").value;
+    var MotDePasse = document.getElementById("motdepasse").value;
+    var ConfirmerMotDePasse = document.getElementById("confirmer_motdepasse").value;
+
+    // Définir les expressions régulières pour les restrictions
+    var Contenir = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-])[0-9a-zA-Z!@#$%^&*()_+{}\[\]:;<>,.?~\\-]+$/;
+
+    // Vérifier si le login et le mot de passe respectent les restrictions
+    if (!Login.match(Contenir) || !MotDePasse.match(Contenir)) {
+        alert("Le login et le mot de passe doivent contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un symbole.");
+        return false;
+    }
+
+    // Vérifier si le mot de passe a la longueur minimale requise
+    if (MotDePasse.length < 8) {
+        alert("Le mot de passe doit avoir au moins 8 caractères.");
+        return false;
+    }
+
+    // Vérifier si les mots de passe correspondent
+    if (MotDePasse !== ConfirmerMotDePasse) {
+        alert("Les mots de passe ne correspondent pas.");
+        return false;
+    }
+
+    // Si toutes les validations réussissent, soumettre le formulaire
+    return true;
+}
+
+    </script>
+</body>
+</html>
